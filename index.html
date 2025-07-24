@@ -713,6 +713,42 @@
       
       createLogs();
 
+      // Add low-poly people around the campfire
+      function addPeopleAroundFire() {
+        const peopleGroup = new THREE.Group();
+
+        const bodyGeometry = new THREE.ConeGeometry(0.25, 0.8, 4);
+        const headGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+        const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+
+        const positions = [
+          new THREE.Vector3(2.5, -1.2, 0),
+          new THREE.Vector3(-2.5, -1.2, 0),
+          new THREE.Vector3(0, -1.2, 2.5),
+          new THREE.Vector3(0, -1.2, -2.5)
+        ];
+
+        positions.forEach(pos => {
+          const person = new THREE.Group();
+
+          const body = new THREE.Mesh(bodyGeometry, material);
+          const head = new THREE.Mesh(headGeometry, material);
+
+          head.position.y = 0.65;
+          person.add(body);
+          person.add(head);
+
+          person.position.copy(pos);
+          person.lookAt(0, -1.2, 0);
+
+          peopleGroup.add(person);
+        });
+
+        scene.add(peopleGroup);
+      }
+
+      addPeopleAroundFire();
+
       // Enhanced particle system for sparks and embers
       let particles;
       
