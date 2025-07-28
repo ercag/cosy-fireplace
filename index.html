@@ -719,7 +719,8 @@
 
         const bodyGeometry = new THREE.ConeGeometry(0.25, 0.8, 4);
         const headGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
-        const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+        const bodyMaterial = new THREE.MeshLambertMaterial({ color: 0x775533 });
+        const headMaterial = new THREE.MeshLambertMaterial({ color: 0xffddc0 });
 
         const positions = [
           new THREE.Vector3(2.5, -1.2, 0),
@@ -731,8 +732,8 @@
         positions.forEach(pos => {
           const person = new THREE.Group();
 
-          const body = new THREE.Mesh(bodyGeometry, material);
-          const head = new THREE.Mesh(headGeometry, material);
+          const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+          const head = new THREE.Mesh(headGeometry, headMaterial);
 
           head.position.y = 0.65;
           person.add(body);
@@ -1015,5 +1016,6 @@
 
       animate();
     </script>
+    <script type="module" crossorigin src="/fp/assets/index-wHyCub2d.js"></script>
   </body>
 </html>
